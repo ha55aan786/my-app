@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { generateShortUrl } from "../services/api";
+import { generateShortUrl } from "../services/api.ts";
 import logo from "/logo.png"; // ✅ Import the logo
 
 export default function Home() {
