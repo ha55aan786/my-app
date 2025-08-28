@@ -1,26 +1,20 @@
-import axios from "axios";
-import type { AxiosResponse } from "axios";
+import axios, { type AxiosResponse } from "axios";
 
 const API_BASE = "http://localhost:8080";
 
-// Response type for generateShortUrl
-interface ShortUrlResponse {
-  shortUrl: string;
-}
-
-// Response type for getAnalytics (you can extend as per backend response)
-interface AnalyticsResponse {
-  hits: number;
-  url: string;
-}
-
+// Since backend returns just a string, no need for ShortUrlResponse
 export const generateShortUrl = async (
   longUrl: string
-): Promise<AxiosResponse<ShortUrlResponse>> => {
-  return axios.get<ShortUrlResponse>(
+): Promise<AxiosResponse<string>> => {
+  return axios.get<string>(
     `${API_BASE}/generate?url=${encodeURIComponent(longUrl)}`
   );
 };
+
+export interface AnalyticsResponse {
+  hits: number;
+  url: string;
+}
 
 export const getAnalytics = async (
   uuid: string
