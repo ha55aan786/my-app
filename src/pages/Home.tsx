@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { generateShortUrl } from "../services/api"; // adjust path if needed.
-import logo from "/logo.png"; // ✅ Import the log
+import { generateShortUrl } from "../services/api";
+import logo from "/logo.png"; // ✅ Import the logo
 
 export default function Home() {
   const [originalUrl, setOriginalUrl] = useState("");
@@ -21,17 +21,16 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-6">
       {/* Header */}
 
-<<<<<<< HEAD:src/pages/Home.jsx
-=======
- 
->>>>>>> develop:src/pages/Home.tsx
       <header className="w-full max-w-5xl flex justify-between items-center py-6">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Shrinko Logo" className="h-12 w-12 rounded-lg shadow-md" />
+          <img
+            src={logo}
+            alt="Shrinko Logo"
+            className="h-12 w-12 rounded-lg shadow-md"
+          />
           <h1 className="text-3xl font-extrabold tracking-tight">Shrinko </h1>
         </div>
       </header>
-
       {/* Hero Section */}
       <main className="flex flex-col items-center text-center mt-20">
         <h2 className="text-5xl font-bold leading-tight mb-6">
@@ -82,7 +81,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="mt-20 py-6 text-sm opacity-80">
-        © {new Date().getFullYear()} Shrinko. All rights reserved.
+        © {new Date().getFullYear()} LinkShortly. All rights reserved.
       </footer>
     </div>
   );
