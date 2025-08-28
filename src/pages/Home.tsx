@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { generateShortUrl } from "../services/api"; // adjust path if needed
+import { generateShortUrl } from "../services/api"; // adjust path if needed.
 import logo from "/logo.png"; // ✅ Import the log
 
 export default function Home() {
@@ -21,6 +21,10 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-6">
       {/* Header */}
 
+<<<<<<< HEAD:src/pages/Home.jsx
+=======
+ 
+>>>>>>> develop:src/pages/Home.tsx
       <header className="w-full max-w-5xl flex justify-between items-center py-6">
         <div className="flex items-center gap-3">
           <img src={logo} alt="Shrinko Logo" className="h-12 w-12 rounded-lg shadow-md" />
