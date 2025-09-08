@@ -1,6 +1,6 @@
 import axios, { type AxiosResponse } from "axios";
 
-const API_BASE = "http://localhost:8080";
+const API_BASE = "https://urlshortener-dda8dfcpd8f2hcbw.canadacentral-01.azurewebsites.net";
 
 // Since backend returns just a string, no need for ShortUrlResponse
 export const generateShortUrl = async (
