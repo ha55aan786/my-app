@@ -1,5 +1,6 @@
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { generateShortUrl } from "../services/api.ts";
+import toast, { Toaster } from "react-hot-toast";
 import logo from "/logo.png";
 
 export default function Home() {
@@ -13,16 +14,24 @@ export default function Home() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await generateShortUrl(originalUrl); // AxiosResponse<string>
-      setShortUrl(response.data); // plain string from backend
+      const response = await generateShortUrl(originalUrl);
+      setShortUrl(response.data);
     } catch (err) {
       console.error(err);
-      alert("Failed to generate short URL");
+      toast.error("❌ Failed to generate short URL");
     }
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(shortUrl);
+    toast.success("✅ Copied to clipboard!");
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-6">
+      {/* Toast container */}
+      <Toaster position="top-center" reverseOrder={false} />
+
       {/* Header */}
       <header className="w-full max-w-5xl flex justify-between items-center py-6">
         <div className="flex items-center gap-3">
@@ -38,7 +47,8 @@ export default function Home() {
       {/* Hero Section */}
       <main className="flex flex-col items-center text-center mt-20">
         <h2 className="text-5xl font-bold leading-tight mb-6">
-          Shorten Your Links, <span className="text-yellow-300">Simplify the Web</span>
+          Shorten Your Links,{" "}
+          <span className="text-yellow-300">Simplify the Web</span>
         </h2>
         <p className="text-lg max-w-2xl mb-10 opacity-90">
           Paste your long URL below and instantly turn it into a short, shareable link.
@@ -68,21 +78,29 @@ export default function Home() {
         {shortUrl && (
           <div className="mt-8 bg-white text-gray-900 rounded-xl shadow-lg p-6 w-full max-w-3xl text-center">
             <h3 className="text-lg font-semibold mb-2">Your shortened URL:</h3>
-            <a
-              href={shortUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 font-bold text-xl break-all hover:underline"
-            >
-              {shortUrl}
-            </a>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+              <a
+                href={shortUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 font-bold text-xl break-all hover:underline"
+              >
+                {shortUrl}
+              </a>
+              <button
+                onClick={handleCopy}
+                className="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow hover:bg-green-600 transition-all"
+              >
+                Copy
+              </button>
+            </div>
           </div>
         )}
       </main>
 
       {/* Footer */}
       <footer className="mt-20 py-6 text-sm opacity-80">
-        © {new Date().getFullYear()} LinkShortly. All rights reserved.
+        © {new Date().getFullYear()} Shrinko. All rights reserved.
       </footer>
     </div>
   );
